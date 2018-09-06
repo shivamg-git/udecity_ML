@@ -25,7 +25,7 @@ plt.scatter(grade_slow, bumpy_slow, color = "r", label="slow")
 plt.legend()
 plt.xlabel("bumpiness")
 plt.ylabel("grade")
-# plt.show()
+plt.show()
 ################################################################################
 
 
@@ -37,46 +37,64 @@ plt.ylabel("grade")
 
 print "GaussianNB : "
 from sklearn.naive_bayes import GaussianNB
-clf = GaussianNB()
+GNB = GaussianNB()
 t0= time()
-clf.fit(features_train,labels_train)
+GNB.fit(features_train,labels_train)
 print "training time:", round(time()-t0, 3), "s"
-print clf.score(features_test,labels_test)
+print GNB.score(features_test,labels_test)
 print
 
 print "rbf Classifier, C = 10000.0"
 from sklearn.svm import SVC
-clf = SVC(kernel="rbf",C = 10.0)
+SVM = SVC(kernel="rbf",C = 10.0)
 print "start training"
 t0= time()
-clf.fit(features_train,labels_train)
+SVM.fit(features_train,labels_train)
 print "training time:", round(time()-t0, 3), "s"
-print clf.score(features_test,labels_test)
+print SVM.score(features_test,labels_test)
 print
 
 print "DecisionTreeClassifier"
 from sklearn import tree
-clf = tree.DecisionTreeClassifier( min_samples_split=2 )
+dt = tree.DecisionTreeClassifier( min_samples_split=2 )
 t0=time()
-clf.fit(features_train,labels_train)
+dt.fit(features_train,labels_train)
 print "training time:", round(time()-t0, 3), "s"
-print clf.score(features_test,labels_test)
+print dt.score(features_test,labels_test)
 print
 
 print "KNN"
 from sklearn import neighbors
-clf = neighbors.KNeighborsClassifier()
+knn = neighbors.KNeighborsClassifier()
 t0=time()
-clf.fit(features_train,labels_train)
+knn.fit(features_train,labels_train)
 print "training time:", round(time()-t0, 3), "s"
-print clf.score(features_test,labels_test)
+print knn.score(features_test,labels_test)
 print
 
-print "ADABoost"
+from sklearn.ensemble import RandomForestClassifier, BaggingClassifier, AdaBoostClassifier, VotingClassifier
 
 
+#Random Forest - Ensemble of Descision Trees
 
+print "RandomForestClassifier"
+rf = RandomForestClassifier(n_estimators=20)
+t0=time()
+rf.fit(features_train,labels_train)
+print "training time:", round(time()-t0, 3), "s"
 
+print rf.score(features_test,labels_test)
+print
+
+#Boosting - Ada Boost
+print "AdaBoostClassifier"
+t0=time()
+adb = AdaBoostClassifier(tree.DecisionTreeClassifier(),n_estimators = 5, learning_rate = 1)
+print "training time:", round(time()-t0, 3), "s"
+adb.fit(features_train,labels_train)
+
+print adb.score(features_test,labels_test)
+print
 try:
     prettyPicture(clf, features_test, labels_test)
 except NameError:
