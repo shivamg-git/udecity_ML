@@ -28,3 +28,5 @@ print "training time:", round(time()-t0, 3), "s"
 
 print clf.score(features_test,labels_test)
 print
+
+print len(features_train[0])
