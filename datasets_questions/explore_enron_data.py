@@ -18,5 +18,35 @@
 import pickle
 
 enron_data = pickle.load(open("../final_project/final_project_dataset.pkl", "r"))
+# count=0
+# for per in enron_data:
+# 	if(enron_data[per]["poi"]==1):
+# 		count += 1
 
+# print count
 
+# import sys
+# sys.path.insert(0, '../final_project/')
+# import poi_email_addresses
+# print len(poi_email_addresses.poiEmails())
+
+# print enron_data['PRENTICE JAMES']
+
+count=0
+for per in enron_data:
+	if(enron_data[per]["salary"]=="NaN"):
+		pass
+	else:
+		count += 1
+ 
+print count
+
+count1=0
+for per in enron_data:
+	if(enron_data[per]["email_address"]=="NaN"):
+		pass
+	else:
+		count1 += 1
+  
+print count1
+ 

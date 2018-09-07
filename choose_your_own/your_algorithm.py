@@ -95,7 +95,7 @@ adb.fit(features_train,labels_train)
 
 print adb.score(features_test,labels_test)
 print
-try:
-    prettyPicture(clf, features_test, labels_test)
-except NameError:
-    pass
+# try:
+#     prettyPicture(clf, features_test, labels_test)
+# except NameError:
+#    pass
