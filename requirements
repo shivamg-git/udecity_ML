@@ -1,0 +1,5 @@
+setuptools
+nltk
+numpy
+scipy
+sklearn
